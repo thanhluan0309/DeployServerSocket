@@ -2,10 +2,16 @@
 var WebSocketServer = require("websocket").server;
 var http = require("http");
 var clients = [];
-var server = http.createServer(function (request, response) {});
-
+var server = http.createServer(function (request, response) {
+  response.writeHead(200, { "Content-Type": "text/plain" });
+  response.write("Hello World!");
+  response.end();
+});
+const express = require("express");
+const app = express();
 const PORTsv = process.env.PORT || 8181;
-server.listen(PORTsv, () => {
+
+server.listen(PORTsv, (req, res) => {
   console.log(`server socket is running port 8181 ${PORTsv}`);
 });
 wsServer = new WebSocketServer({ httpServer: server });
